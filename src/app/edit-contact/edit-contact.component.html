@@ -1,0 +1,167 @@
+<div class="container mt-1">
+    <!-- header -->
+    <div class="row">
+        <div class="col">
+            <!-- title -->
+            <h1 class="text-primary me-2"> <i class="fa-solid fa-user-pen fa-shake"></i>Update Contact Page</h1>
+
+            <!-- contact -->
+
+            <p style="text-align: justify;" class="mt-3">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad consequuntur explicabo, eveniet omnis ex
+                fugit quam, sit praesentium minus itaque delectus iusto porro quisquam eaque voluptate nulla repellat
+                mollitia ea. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, quaerat nemo. Rem natus
+                dolorem aperiam ducimus ex! Distinctio aliquid nihil non, ipsum debitis maxime et hic eveniet,
+                voluptatum nostrum quibusdam?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut deleniti
+                consequuntur a aut sequi repudiandae nostrum temporibus quas tenetur veritatis. Rerum magni expedita in
+                dolore deserunt quis facere placeat at? Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit
+                architecto, quae dicta velit officia consequatur expedita ex error reprehenderit laborum. Ea minima nisi
+                modi quas autem exercitationem tenetur assumenda aliquam! Lorem ipsum dolor sit amet, consectetur
+                adipisicing elit. Cupiditate provident voluptate blanditiis iusto labore amet mollitia facilis,
+                pariatur, maxime totam aliquid quis soluta. Quibusdam iste provident tempora tempore dolore voluptatem!
+            </p>
+        </div>
+    </div>
+
+    <!-- form design -->
+    <div class="row mt-5">
+        <div class="col-md-8">
+            <form #editContactForm="ngForm" class="border p-3 rounded">
+                <!-- id -->
+                <div class="form-floating mb-3">
+                    <input name="id" #id="ngModel" [(ngModel)]="contact.id" type="text"  placeholder="Contact Id" 
+                    class="form-control" id="floatingInputid" required >
+                    <label for="floatingInputid">Contact Id</label>
+                </div>
+<!-- id validation -->
+             <div *ngIf="id.invalid&&id.touched" class="mb-2 text-danger">
+                please enter a valid id
+
+             </div>
+               
+
+                <!-- name -->
+                <div class="form-floating mb-3">
+                    <input type="text" #name="ngModel" name="name" [(ngModel)]="contact.name"   placeholder="Contact name" class="form-control" id="floatingInputname" required>
+                    <label for="floatingInputname">Contact Name</label>
+                </div>
+
+                <!-- name validation -->
+                <div *ngIf="name.invalid&&name.touched" class="mb-2 text-danger">
+                    please enter a valid name
+                </div>
+
+
+               
+
+                <!-- image -->
+                <div class="form-floating mb-3">
+                    <input type="text" name="photo" #photo="ngModel" [(ngModel)]="contact.photo" placeholder="Contact Image URL" class="form-control" id="floatingInputimg" required>
+                    <label for="floatingInputimg">Contact Image URL</label>
+                </div>
+
+                <!-- photo validation -->
+
+                <div *ngIf="photo.invalid&&photo.touched" class="mb-2 text-danger">
+                    please enter a valid photo
+                </div>
+
+               
+
+                <!-- email -->
+                <div class="form-floating mb-3">
+                    <input type="text" name="email" #email="ngModel" [(ngModel)]="contact.email" placeholder="Contact E-mail" class="form-control" id="floatingInputemail" email required>
+                    <label for="floatingInputemail">Contact E-mail</label>
+                </div>
+
+                <!-- email validation -->
+                <div *ngIf="email.invalid&&email.touched" class="mb-2 text-danger">
+                    please enter a valid email
+                </div>
+
+                <!-- contact  -->
+
+                <div class="form-floating mb-3">
+                    <input type="text" name="mobile" #mobile="ngModel" [(ngModel)]="contact.mobile" placeholder="Contact company name" class="form-control"
+                        id="floatingInputcontact" required>
+                    <label for="floatingInputcontact">Contact </label>
+                </div>
+
+                <!-- mobile validation -->
+                <div *ngIf="mobile.invalid&&mobile.touched" class="mb-2 text-danger">
+                    please enter a valid mobile number
+                </div>
+
+
+               
+
+                <!-- company -->
+                <div class="form-floating mb-3">
+                    <input name="company" #company="ngModel" [(ngModel)]="contact.company" type="text" placeholder="Contact company name" class="form-control"
+                        id="floatingInputcompany" required >
+                    <label for="floatingInputcompany">Contact Company Name</label>
+                </div>
+
+                <!-- company validation -->
+                <div *ngIf="company.invalid&&company.touched" class="mb-2 text-danger">
+                    please enter a valid company name
+                </div>
+
+
+               
+
+                <!-- title -->
+
+                <div class="form-floating mb-3">
+                    <input type="text" #title="ngModel" name="title" [(ngModel)]="contact.title" placeholder="Contact title " class="form-control" id="floatingInputtitle" >
+                    <label for="floatingInputtitle">Contact title</label>
+                </div>
+
+                <!-- title validation -->
+                <div *ngIf="title.invalid&&title.touched" class="mb-2 text-danger">
+                    please enter a valid title
+                </div>
+
+              
+
+
+                <!-- dropdown to choose group -->
+                <div class="form-floating mb-3">
+                    <select name="groupId" #groupId="ngModel" [(ngModel)]="contact.groupId" 
+                     class="form-control" id="floatingInputgroup">
+                        <option value="" select hidden disabled>{{contact.groupId}}</option>
+                        <option [value]="group.id" *ngFor="let group of allGroups" >{{group.name}}</option>
+                        
+                        
+                    </select>
+                    <label for="floatingInputgroup"></label>
+                </div>
+
+                <!-- select validation -->
+                <div *ngIf="groupId.invalid&&groupId.touched" class="mb-2 text-danger">
+                    please enter a valid option
+                </div>
+               
+
+                <!-- button -->
+
+                <div class="mb-3">
+                    <button (click)="updateContact(contact.id,contact)" class="btn btn-success">Update</button>
+                    <a routerLink="" class="btn btn-secondary ms-3">Close</a>
+                </div>
+
+                
+
+
+            </form>
+        </div>
+
+        <!-- contact image -->
+        <div class="col-md-4 d-flex justify-content-center  ">
+            <img [src]="contact.photo"
+                alt="no image">
+        </div>
+
+        
+    </div>
+</div>

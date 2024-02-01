@@ -1,0 +1,74 @@
+<div class="container-fluid">
+    <div class="row mt-3">
+        <div class="col ">
+            <h3>All Contacts
+                <a class="btn btn-success ms-5 " routerLink="add-contact"> <i class="fa-solid fa-user"></i> Add New</a>
+            </h3>
+        </div>
+
+        <p style="text-align: justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae rem perferendis
+            sunt. Fuga voluptatem odio alias provident eaque tempora, quam, consequuntur vitae neque suscipit laboriosam
+            esse iste, earum mollitia reiciendis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit omnis
+            neque aspernatur unde assumenda, officia quos officiis. Qui quo commodi error sequi, pariatur, modi saepe
+            voluptates, quia delectus veniam neque? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt
+            porro soluta explicabo repellendus similique accusantium ea iusto, nisi laborum cupiditate! Eaque dolore
+            blanditiis optio quod vero facere sunt veritatis officia!</p>
+
+        <div class="row mt-5">
+            <div class="col-lg-3 fw-bolder">
+                search content
+            </div>
+
+            <div class="col-lg-6" >
+                <input placeholder="type contact here" type="text " class="form-control me-auto">
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-lg-6 mb-3" *ngFor="let contact of allContacts" >
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <img width="130px" height="130px"
+                                    [src]="contact.photo"
+                                    alt="no image">
+
+                            </div>
+
+                            <div class="col-sm-7 ">
+                                <ul class="list-group">
+                                    <li class="list-group-item">username: <span class="fw-bolder">{{contact.name}}</span></li>
+                                    <li class="list-group-item">email: <span class="fw-bolder">{{contact.email}}</span>
+                                    </li>
+                                    <li class="list-group-item">phone number: <span class="fw-bolder">{{contact.mobile}}</span>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                            <div class="col-sm-1 d-flex flex-column justify-content-center">
+
+                                <a class="btn btn-dark text-light mb-1" routerLink="view/{{contact.id}}">
+                                    <i class="fa-solid fa-eye"> </i></a>
+
+
+                                <a class="btn btn-dark text-light mb-1" routerLink="edit/{{contact.id}}">
+                                    <i class="fa-solid fa-pen"></i></a>
+
+
+                                <a class="btn btn-dark text-light mb-1" routerLink="">
+                                    <i class="fa-solid fa-trash"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+</div>

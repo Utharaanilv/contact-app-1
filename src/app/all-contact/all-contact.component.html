@@ -1,0 +1,109 @@
+<div class="container-fluid">
+
+    <div class="row mt-3">
+
+        <div class="col">
+            <!-- page title -->
+            <h3>All contact Page
+                <a class="btn btn-success ms-5" routerLink="add-contact"><i class="fa-solid fa-user-plus"></i> Add
+                    New</a>
+            </h3>
+
+            <!-- content -->
+            <p style="text-align: justify;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate beatae
+                aut ullam fugit, iure quo laborum. Libero, repudiandae quas culpa quae, delectus adipisci ea
+                necessitatibus nobis odit eligendi, sint saepe? Lorem ipsum, dolor sit amet consectetur adipisicing
+                elit. Tempore, nobis aliquid deserunt sit alias ducimus excepturi quasi quam perferendis quas iste
+                inventore est ex suscipit laborum magni ab laudantium impedit. Lorem, ipsum dolor sit amet consectetur
+                adipisicing elit. Culpa porro nisi a dicta qui reprehenderit, debitis sapiente autem at eum temporibus.
+                Rerum perferendis fugiat nesciunt laborum tempora corrupti sunt enim? Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Eligendi libero quae, vitae nisi voluptatibus expedita, laboriosam quidem
+                illum consequatur possimus voluptatum nihil provident optio, ipsam assumenda ab facere eaque tempora?
+            </p>
+
+            <!-- search content -->
+            <div class="row mt-5">
+
+                <div class="col-lg-3 fw-bolder">
+                    Search Content
+                </div>
+
+                <div class="col-lg-6">
+                    <input name="search" [(ngModel)]="searchKey" placeholder="Type contact name here" type="text" class="form-control me-auto">
+                </div>
+
+            </div>
+
+            <!-- loading spinner -->
+<!-- to show spinner -->
+            <div *ngIf="isLoading && allContacts.length==0" class="text-center mt-5">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+            </div>
+
+            <!-- error message div -->
+            <div *ngIf="errorMsg"class="alert alert-danger m-5"role="alert">
+                {{errorMsg}}
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+<!-- contact card -->
+
+<div class="container mt-5">
+
+    <!-- card show -->
+
+    <div class="row" *ngIf="!isLoading && allContacts.length>0" >
+        <div class="col-lg-6 mb-3"*ngFor="let contact of allContacts | filter:searchKey:'name'  ">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <!-- image -->
+                        <div class="col-sm-4">
+                            <img width="130px" height="130px"
+                                [src]="contact.photo"
+                                alt="no image">
+                        </div>
+
+                        <!-- content -->
+                        <div class="col-sm-7 ">
+                            <ul class="list-group">
+                                <li class="list-group-item">Name: <span class="fw-bolder">{{contact.name}}</span></li>
+                                <li class="list-group-item">Email: <span class="fw-bolder">{{contact.email}}</span>
+                                </li>
+                                <li class="list-group-item">Mobile: <span class="fw-bolder">{{contact.mobile}}</span></li>
+                            </ul>
+                        </div>
+
+                        <!-- actions -->
+                        <div class="col-sm-1 d-flex flex-column justify-content-center">
+
+                            <!-- view -->
+                            <a class=" btn btn-warning text-light mb-1" routerLink="view-contact/{{contact.id}}">
+                            <i class="fa-solid fa-eye"></i></a>
+
+                            <!-- edit -->
+                            <a class=" btn btn-success text-light mb-1" routerLink="edit-contact/{{contact.id}}">
+                                <i class="fa-solid fa-pen"></i></a>
+
+                            <!-- delete -->
+                            <a (click)="deleteContact(contact.id)" class=" btn btn-danger text-light mb-1" >
+                                <i class="fa-solid fa-trash"></i></a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
